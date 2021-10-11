@@ -1,16 +1,41 @@
-# This is a sample Python script.
+from flask import Flask, render_template, request, redirect
 
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')   # Press F9 to toggle the breakpoint.
+app = Flask(__name__)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# # trecho da app
+# app.run(host='0.0.0.0', port=8080)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+class Jogo:
+    def __init__(self, nome, categoria, console):
+        self.nome = nome
+        self.categoria = categoria
+        self.console = console
+
+
+jogo1 = Jogo('Super Mario', 'Aventura', 'Super Nintendo')
+jogo2 = Jogo('Need for Speed', 'Corrida', 'Play Staiton')
+jogo3 = Jogo('Fifa2030', 'Esporte', 'Play Staiton')
+lista_de_jogos = [jogo1, jogo2, jogo3]
+
+
+@app.route('/')
+def index():
+    return render_template('lista.html', titulo='Jogos', jogos=lista_de_jogos)
+
+
+@app.route('/novo')
+def novo_jogo():
+    return render_template('novo_jogo.html', titulo='Novo Jogo')
+
+
+@app.route('/criar', methods=['POST',])
+def criar():
+    nome = request.form['nome']
+    categoria = request.form['categoria']
+    console = request.form['console']
+    novo_jogo = Jogo(nome, categoria, console)
+    lista_de_jogos.append(novo_jogo)
+    return redirect('/')
+
+app.run(debug=True)
