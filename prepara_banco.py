@@ -31,7 +31,7 @@ cursor = conn.cursor()
 cursor.executemany(
       'INSERT INTO jogoteca.usuario (id, nome, senha) VALUES (%s, %s, %s)',
       [
-            ('luan', 'Luan Marques', 'flask'),
+            ('cris', 'Cristian Santana', 'flask'),
             ('nico', 'Nico', '7a1'),
             ('danilo', 'Danilo', 'vegas')
       ])
@@ -45,7 +45,7 @@ for user in cursor.fetchall():
 cursor.executemany(
       'INSERT INTO jogoteca.jogo (nome, categoria, console) VALUES (%s, %s, %s)',
       [
-            ('God of War 4', 'Acao', 'PS4'),
+            ('The first one', 'Acao', 'PS4'),
             ('NBA 2k18', 'Esporte', 'Xbox One'),
             ('Rayman Legends', 'Indie', 'PS4'),
             ('Super Mario RPG', 'RPG', 'SNES'),
