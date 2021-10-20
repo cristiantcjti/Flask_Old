@@ -7,7 +7,8 @@ def configure(app):
     ma.init_app(app)
 
 
-class BookSchema(ma.SQLAlchemySchema):
+class BookSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Book
+        load_instance = True
         

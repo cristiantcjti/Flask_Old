@@ -9,6 +9,7 @@ flask-migrate = "*"
 flask-marshmallow = "*"
 flask = "*"
 marshmallow = "*"
+marshmallow-sqlalchemy = "*"
 
 [dev-packages]
 requests = "*"
