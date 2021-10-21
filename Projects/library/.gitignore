@@ -1,0 +1,4 @@
+.venv
+venv
+Pipfile.lock
+migrations

@@ -10,5 +10,5 @@ def configure(app):
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    livro = db.Column(db.String(255))
-    escritor = db.Column(db.String(255))
+    title = db.Column(db.String(255))
+    author = db.Column(db.String(255))
