@@ -20,7 +20,6 @@ class Items(Resource):
         required=True,
         help="This field cannot be blank!"
     )
-    data = parser.parse_args()
     
     @jwt_required()
     def get(self, name):
