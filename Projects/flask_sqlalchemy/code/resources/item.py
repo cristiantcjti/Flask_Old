@@ -25,14 +25,12 @@ class Item(Resource):
         if ItemModel.find_by_name(name):
             return {'message': f"An item with name {name} already exists."}, 400
 
-        # data = request.get_json()
-
         data = Item.parser.parse_args()
 
         item = ItemModel(name, data["price"])
 
         try:
-            item.insert()
+            item.save_to_db()
         except:
             return {'message': f"An error occurred while inserting"}, 500
 
@@ -45,34 +43,24 @@ class Item(Resource):
         data = Item.parser.parse_args()
         
         item = ItemModel.find_by_name(name)
-        updated_item = ItemModel(name, data['price'])
 
         if item is None:
-            try:
-                updated_item.insert()
-            except:
-                return {'message': f"An error occurred while inserting"}, 500
+            item = ItemModel(name, data["price"])
         else:
-            try:
-                updated_item.update()
-            except:
-                return {'message': f"An error occurred while updating"}, 500
+            item.price = data['price']
 
-        return updated_item.json()
+        item.save_to_db()
+
+        return item.json()
 
 
     @jwt_required()
     def delete(self, name):
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
+        item = ItemModel.find_by_name(name)
+        if item:
+            item.delete_from_db()
 
-        query = "DELETE FROM items WHERE name=?"
-        cursor.execute(query, (name,))
-
-        connection.commit()
-        connection.close()        
-
-        return {'message': f'item {name} deleted'}
+        return {'message': f'item {name} deleted'}, 204
 
 class ItemsList(Resource):
     def get(self):
