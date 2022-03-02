@@ -7,16 +7,21 @@ from db import db
 from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, ItemsList
+from resources.store import Store,StoreList
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_AUTH_URL_RULE'] = '/login'
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
 app.secret_key = 'cris'
 api = Api(app)
 
-app.config['JWT_AUTH_URL_RULE'] = '/login'
-app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 jwt = JWT(app, authenticate, identity) # Create a /auth endpoint by itself.
 
 @jwt.auth_response_handler
@@ -34,7 +39,9 @@ def customized_error_handler(error):
                    }), error.status_code    
 
 
+api.add_resource(Store,'/store/<string:name>')
 api.add_resource(Item, '/items/<string:name>')
+api.add_resource(StoreList, '/stores')
 api.add_resource(ItemsList, '/items')
 api.add_resource(UserRegister, '/register')
 
