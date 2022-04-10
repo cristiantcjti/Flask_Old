@@ -31,4 +31,8 @@ class Config:
     FAILED_LOAD_DOMAIN = os.environ.get('FAILED_LOAD_DOMAIN')
     ERRO_SENDING_EMAIL = os.environ.get('ERRO_SENDING_EMAIL')
 
-    CONFIRMATION_EXPIRATION_DELTA = os.environ.get('CONFIRMATION_EXPIRATION_DELTA')
+    NOT_FOUND = os.environ.get('NOT_FOUND')
+    EXPIRED = os.environ.get('EXPIRED')
+    ALREADY_CONFIRMED = os.environ.get('ALREADY_CONFIRMED')
+    RESEND_SUCCESSFUL = os.environ.get('RESEND_SUCCESSFUL')
+    RESEND_FAIL = os.environ.get('RESEND_FAIL')
