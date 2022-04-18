@@ -20,5 +20,5 @@ def gettext(name):
     return cached_strings[name]
 
 
-refresh()
+refresh() 
 
