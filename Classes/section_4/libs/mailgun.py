@@ -28,7 +28,6 @@ class Mailgun:
                 "html": html,
             },
         )
-
         if response.status_code != 200:
             raise MailGunException(config.ERRO_SENDING_EMAIL)
 

@@ -1,6 +1,6 @@
 from time import time
 import traceback
-from Classes.section_4.libs.mailgun import MailGunException
+from libs.mailgun import MailGunException
 
 from flask import make_response, render_template
 from flask_restful import Resource
@@ -33,7 +33,7 @@ class Confirmation(Resource):
 
         headers = {"Content-Type": "text/html"}
         return make_response(
-            render_template("confirmation_path.html", email=confirmation.user.email),
+            render_template("confirmation_page.html", email=confirmation.user.email),
             200,
             headers=headers,
         )
@@ -52,7 +52,7 @@ class ConfirmationByUser(Resource):
                 'current_time': int(time()),
                 'confirmation': [
                     confirmation_schema.dump(each) 
-                    for each in user.confirmation.order_by(ConfirmationModel.expired_at)
+                    for each in user.confirmation.order_by(ConfirmationModel.expire_at)
                 ],
             },
             200,
