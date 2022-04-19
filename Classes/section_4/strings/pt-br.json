@@ -1,5 +1,5 @@
 {
-    "mailgun_failed_load_api_key": "Failed to load MailGun API key.",
+    "mailgun_failed_load_api_key": "Falha ao carregar a chave da API do MailGun.",
     "mailgun_failed_load_domain": "Failed to load MailGun domain.",
     "mailgun_error_send_email": "Error in sending confirmation email, user registration failed.",
   

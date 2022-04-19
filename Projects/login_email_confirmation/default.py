@@ -4,6 +4,8 @@ class Config:
     """
     Base configuration, this class contains most of the variables and default values.
     """
+    DATA_BASE_URI = os.environ.get('DATA_BASE_URI')
+    APP_SECRET_KEY = os.environ.get('APP_SECRET_KEY')
 
     USER_ALREADY_EXISTS = os.environ.get('USER_ALREADY_EXISTS')
     EMAIL_ALREADY_EXISTS = os.environ.get('EMAIL_ALREADY_EXISTS')
@@ -21,7 +23,17 @@ class Config:
     STORE_NOT_FOUND = os.environ.get('STORE_NOT_FOUND')
     STORE_DELETED = os.environ.get('STORE_DELETED')
 
-    MAILGUN_DOMAIN =  os.environ.get("MAILGUN_DOMAIN")
-    MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY")
+    MAILGUN_DOMAIN =  os.environ.get('MAILGUN_DOMAIN')
+    MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
     FROM_TITLE = os.environ.get('FROM_TITLE')
     FROM_EMAIL = os.environ.get('FROM_EMAIL')
+    FAILED_LOAD_API_KEY = os.environ.get('FAILED_LOAD_API_KEY')
+    FAILED_LOAD_DOMAIN = os.environ.get('FAILED_LOAD_DOMAIN')
+    ERRO_SENDING_EMAIL = os.environ.get('ERRO_SENDING_EMAIL')
+
+    NOT_FOUND = os.environ.get('NOT_FOUND')
+    EXPIRED = os.environ.get('EXPIRED')
+    ALREADY_CONFIRMED = os.environ.get('ALREADY_CONFIRMED')
+    RESEND_SUCCESSFUL = os.environ.get('RESEND_SUCCESSFUL')
+    RESEND_FAIL = os.environ.get('RESEND_FAIL')
+    CONFIRMATION_EXPIRATION_DELTA = os.environ.get('CONFIRMATION_EXPIRATION_DELTA')
