@@ -7,7 +7,7 @@
 <h2>PROJECTS:</h2>
 
 <ul>
-    <li>👀 GOOGLY EYE TOOL<br>It is a web app that allows you to upload a picture and through<br>
+    <li>👀 GOOGLY EYE TOOL<br>-It is a web app that allows you to upload a picture and through<br>
     machine learning algorithms recognizes faces in the picture and add googly eyes<br>
     exactly over eyes  of people's faces</li>
     <li>🌶️ LOGING_EMAIL_CONFIRMATION<br>-This project simulates a login flow requiring confirmation through email notification. In addition, there is a tranlation's lib simulating libs as flask-Babel.</li>
