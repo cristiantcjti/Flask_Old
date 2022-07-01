@@ -5,4 +5,4 @@ venv
 pyc
 __pycache__
 data.db
-gen_token
+gen_token.py
