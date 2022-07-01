@@ -14,6 +14,7 @@ def gen_token():
     )
 
     print(token)
+    
 
 if __name__ == "__main__":
     gen_token()
