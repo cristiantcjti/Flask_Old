@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Googly Eyes tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Googly Eyes tool</h1>
+        <form id="form">
+            <input type="file" name="inpFile" id="inpFile">
+            <div class="image-preview" id="imagePreview">
+                <img src="" alt="Image Preview" class="image-preview__image">
+                <span class="image-preview__default-text">Image Preview</span>
+            </div>
+            <input type="submit" >
+            <input type ="hidden" id="imageB64" name="imageB64">
+        </form>
+        <img  id="imageResponse" src="" alt="">
+    </div>
+    <script>
+        document.querySelector('#form').addEventListener('submit', (e)=> {
+            e.preventDefault();
+            postImage()
+        })
+        async function postImage(){
+            const form = document.getElementById("form");
+            const endpoint = "http://127.0.0.1:5000/api/images";
+            const imageB64 = document.getElementById("imageB64").value;
+            const response = await fetch(endpoint, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Accept': 'application/json',
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify({'data': imageB64})
+                                            });
+
+            const imageBase64 = await response.json();
+            form.style.display = 'none';
+            const imagePreview = document.getElementById("imageResponse");
+            imagePreview.src = imageBase64.response
+        } 
+
+        const inpFile = document.getElementById("inpFile");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+        inpFile.addEventListener("change", function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                
+                previewDefaultText.style.display = "none";
+                previewImage.style.display = "block";
+                
+                reader.addEventListener("load", function() {
+                    previewImage.setAttribute("src", this.result);
+					document.getElementById("imageB64").value = this.result;
+                });
+                reader.readAsDataURL(file);
+            } else {
+                previewDefaultText.style.display = null;
+                previewImage.style.display = null;
+                previewImage.setAttribute("src", "");
+            }
+        });
+	</script>
+</body>
+</html>
