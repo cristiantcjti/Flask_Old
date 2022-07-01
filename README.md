@@ -13,4 +13,6 @@
     <li>🌶️ LOGING_EMAIL_CONFIRMATION<br>-This project simulates a login flow requiring confirmation through email notification. In addition, there is a tranlation's lib simulating libs as flask-Babel.</li>
     <li>📖 GAME_BOOKSHELF<br>-A simple project where I allow the user to add game's info to a virtual bookshelf.</li>
     <li>📚 LIBRARY<br>-It is a CRUD project where I use the basic concepts about Flask.</li>
+    <li>🕵🏻‍♂️ OAUTH2<br>-Implement the oauth2 concepts with flask and github repo.</li>
+    <li>💳 PAYMENTS_WITH_STRIPE<br>-How to conect an REST api and a service of payments.</li>
 </ul>
